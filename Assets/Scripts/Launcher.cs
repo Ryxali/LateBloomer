@@ -5,6 +5,7 @@ public class Launcher : MonoBehaviour {
     public Caterpillar caterpillarPrefab;
     public TransformFollower cameraTransformFollower;
     public Transform launchTransform;
+    public WorldBuilder worldBuilder;
 
     [Range(0.0f, 1000.0f)]
     public float launchVelocity = 20.0f;
@@ -23,6 +24,8 @@ public class Launcher : MonoBehaviour {
             caterpillar.transform.rotation = launchTransform.rotation;
             caterpillar.AddVelocity(launchTransform.forward * launchVelocity);
             cameraTransformFollower.target = caterpillar.transform;
+            worldBuilder.target = caterpillar.transform;
+            worldBuilder.Reseed();
             //caterpillar.acc
         }
 	}

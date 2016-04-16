@@ -11,7 +11,7 @@ public class Caterpillar : MonoBehaviour {
     public Vector3 sumAcceleration { get { return acceleration + (useGravity ? GRAVITY : Vector3.zero); } }
     public bool useGravity = true;
 
-    private float maxVelocity = 0.5f;
+    //private float maxVelocity = 0.5f;
     //xi+1 = xi + (xi - xi-1) + a * dt * dt
     // Use this for initialization
     void Start () {
