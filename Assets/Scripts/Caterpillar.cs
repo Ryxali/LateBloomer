@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 [AddComponentMenu("Scripts/Player/Caterpillar")]
 [RequireComponent(typeof(CircleCollider2D))]
 public class Caterpillar : MonoBehaviour {
@@ -32,7 +33,7 @@ public class Caterpillar : MonoBehaviour {
     private void TickPhysics()
     {
         Vector3 lPos = transform.position;
-        transform.position = transform.position + (transform.position - lastPosition) + sumAcceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
+        transform.position = transform.position + (transform.position - lastPosition) * 0.999f + sumAcceleration * Time.fixedDeltaTime * Time.fixedDeltaTime;
         lastPosition = lPos;    
         //if ((transform.position - lPos).magnitude > maxVelocity / Time.fixedDeltaTime) transform.position = lPos + (transform.position - lPos).normalized * (maxVelocity / Time.fixedDeltaTime);
     }
