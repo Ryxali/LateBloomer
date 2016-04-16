@@ -10,6 +10,7 @@ public class WorldBuilder : MonoBehaviour {
     public Wind windPrefab;
     public Leaf leafPrefab;
     public Mushroom mushroomPrefab;
+    public Grass grassPrefab;
     
     private Dictionary<string, bool> spawned = new Dictionary<string, bool>();
 
@@ -151,7 +152,7 @@ public class WorldBuilder : MonoBehaviour {
         else
         {
             if (val > 0.6f) t = typeof(Mushroom);
-
+            else if (val > 0.1f) t = typeof(Grass);
             if(t!= null)
             {
                 Transform o = null;
@@ -159,6 +160,9 @@ public class WorldBuilder : MonoBehaviour {
                 {
                     o = Instantiate<Mushroom>(mushroomPrefab).transform;
 
+                }else if(t == typeof(Grass))
+                {
+                    o = Instantiate<Grass>(grassPrefab).transform;
                 }
 
                 o.parent = transform;

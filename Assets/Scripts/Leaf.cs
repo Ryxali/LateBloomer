@@ -10,6 +10,7 @@ public class Leaf : MonoBehaviour {
         Caterpillar c = other.GetComponent<Caterpillar>();
         if (c != null)
         {
+            if (!c.canNomOnLeaf) return;
             c.NomOnLeaf();
         }
 

@@ -452,6 +452,7 @@ MonoBehaviour:
   windPrefab: {fileID: 11471928, guid: 8ba0bc4c064f57947be72a9e69cb53ee, type: 2}
   leafPrefab: {fileID: 11406862, guid: de4d4d4316d88f943865ad48b89933fb, type: 2}
   mushroomPrefab: {fileID: 11429440, guid: a13a20f7bd78a0e49929d0470239c8b3, type: 2}
+  grassPrefab: {fileID: 11478998, guid: 879b83ff063957f458f8e61f0f91d670, type: 2}
   img: {fileID: 0}
   tex: {fileID: 0}
   cellSize: 4

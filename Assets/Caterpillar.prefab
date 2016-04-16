@@ -184,8 +184,8 @@ MonoBehaviour:
   acceleration: {x: 0, y: 0, z: 0}
   useGravity: 1
   leavesNeededUntilKakuna: 3
-  groundBouncyness: 0.6
-  groundFriction: 0.6
+  groundBouncyness: 0.3
+  groundFriction: 0.2
   larvaRenderer: {fileID: 2318970}
   cocoonRenderer: {fileID: 2378404}
 --- !u!135 &13523788

@@ -5,6 +5,7 @@ public class BubbleEffect : MonoBehaviour {
     public float effectMagnitude = 15.0f;
     public float duration = 2.0f;
     private int stacks = 0;
+    public int maxStacks = 3;
     // Use this for initialization
     void Start () {
         ApplyStack();
@@ -16,6 +17,20 @@ public class BubbleEffect : MonoBehaviour {
     {
         stacks++;
         Caterpillar caterpillar = GetComponentInParent<Caterpillar>();
+        if (stacks > maxStacks)
+        {
+            while(stacks > 0)
+            {
+                
+                caterpillar.acceleration -= Vector3.up * effectMagnitude;
+                stacks--;
+                StopAllCoroutines();
+                
+                
+            }
+            Destroy(gameObject);
+            return;
+        }
         caterpillar.acceleration += Vector3.up * effectMagnitude;
         UpdateSize();
     }
