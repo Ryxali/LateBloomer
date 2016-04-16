@@ -10,24 +10,84 @@ public class Caterpillar : MonoBehaviour {
     public static readonly Vector3 GRAVITY = Vector3.down * 9.8f;
     public Vector3 sumAcceleration { get { return acceleration + (useGravity ? GRAVITY : Vector3.zero); } }
     public bool useGravity = true;
+    public Vector3 curVelocity { get { return (transform.position - lastPosition) / Time.fixedDeltaTime; } }
 
+    public int leavesNeededUntilKakuna = 10;
+
+    public bool canNomOnLeaf { get; private set; }
+    public int leavesNommed { get; private set; }
+
+    public float groundBouncyness = 0.6f;
+    public float groundFriction = 0.6f;
     //private float maxVelocity = 0.5f;
     //xi+1 = xi + (xi - xi-1) + a * dt * dt
     // Use this for initialization
     void Start () {
         
         lastPosition += transform.position;
+        canNomOnLeaf = true;
 	}
+
+    public void NomOnLeaf()
+    {
+        if (!canNomOnLeaf) return;
+        canNomOnLeaf = false;
+        StartCoroutine(OmNomNom());
+
+        
+
+    }
+
+    IEnumerator OmNomNom()
+    {
+        Debug.Log("NOM");
+        yield return new WaitForSeconds(0.9f);
+        leavesNommed++;
+        if(leavesNommed >= leavesNeededUntilKakuna)
+        {
+            yield return StartCoroutine(KakunaMatata());
+        }
+        else
+        {
+            canNomOnLeaf = true;
+        }
+    }
+
+    IEnumerator KakunaMatata()
+    {
+        yield return new WaitForSeconds(5.0f);
+        Debug.Log("What a wonderful phrase!");
+    }
+
+    // Called by GameManager
+    void Reset()
+    {
+        Destroy(gameObject);
+    }
 
     public void AddVelocity(Vector3 velocity)
     {
-        lastPosition -= velocity * Time.deltaTime;
+        lastPosition -= velocity * Time.fixedDeltaTime;
+    }
+
+    public void SetVelocity(Vector3 velocity)
+    {
+        lastPosition = transform.position - velocity * Time.fixedDeltaTime;
     }
 
     #region Physics
     void FixedUpdate () {
 
         TickPhysics();
+        if(transform.position.y < 0.5f)
+        {
+            Vector3 vel = curVelocity;
+            if (vel.y > 0.0f) return;
+            Vector3 velU = Vector3.Project(vel, Vector3.up);
+            vel -= velU;
+            transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
+            SetVelocity(vel * (1.0f - groundFriction) - velU * groundBouncyness);
+        }
 	}
 
     private void TickPhysics()

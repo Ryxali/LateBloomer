@@ -7,6 +7,9 @@ public class WorldBuilder : MonoBehaviour {
     public Transform target;
 
     public Bubble bubblePrefab;
+    public Wind windPrefab;
+    public Leaf leafPrefab;
+    public Mushroom mushroomPrefab;
     
     private Dictionary<string, bool> spawned = new Dictionary<string, bool>();
 
@@ -45,6 +48,18 @@ public class WorldBuilder : MonoBehaviour {
 
     }
     
+    // Called from GameManager
+    void Reset()
+    {
+        Reseed();
+        spawned.Clear();
+        //foreach()
+        for(int i = 0; i < transform.childCount; i++)
+        {
+            Destroy(transform.GetChild(i).gameObject);
+        }
+        target = null;
+    }
 	// Update is called once per frame
 	void Update () {
 	    //TODO build along x and y
@@ -104,17 +119,52 @@ public class WorldBuilder : MonoBehaviour {
         float val = Noise(x, y, 0);
 
         System.Type t = null;
-        if (val > 0.4f) t = typeof(Bubble);
-        if(t != null)
+        if(y > 1)
         {
-            if(t == typeof(Bubble))
+            if (val > 0.9f) t = typeof(Wind);
+            else if (val > 0.5f && val < 0.6f) t = typeof(Bubble);
+            else if (val > 0.3f && val < 0.4f) t = typeof(Leaf);
+            if (t != null)
             {
-                Transform o = Instantiate<Bubble>(bubblePrefab).transform;
+                Transform o = null;
+                if (t == typeof(Bubble))
+                {
+                    o = Instantiate<Bubble>(bubblePrefab).transform;
+
+                }
+                else if (t == typeof(Wind))
+                {
+                    o = Instantiate<Wind>(windPrefab).transform;
+                }
+                else if (t == typeof(Leaf))
+                {
+                    o = Instantiate<Leaf>(leafPrefab).transform;
+                }
+                else
+                {
+                    Debug.LogError("Unknown type!");
+                }
+
                 o.parent = transform;
                 o.position = new Vector3(x * cellSize, y * cellSize);
             }
-            
-            
+        }
+        else
+        {
+            if (val > 0.6f) t = typeof(Mushroom);
+
+            if(t!= null)
+            {
+                Transform o = null;
+                if (t == typeof(Mushroom))
+                {
+                    o = Instantiate<Mushroom>(mushroomPrefab).transform;
+
+                }
+
+                o.parent = transform;
+                o.position = new Vector3(x * cellSize, y * cellSize - cellSize + 1);
+            }
         }
         spawned.Add(x + "x" + y, true);
     }
@@ -181,7 +231,7 @@ public class WorldBuilder : MonoBehaviour {
         vec *= Mathf.Cos(vec * y * x + vec + z);
         vec *= Mathf.Sin(-vec * y + 4 * y);
 
-        return Mathf.Abs(vec);
+        return Mathf.Abs(vec) * Mathf.Clamp01(y) * Mathf.Clamp01(1 - (y / 100));
     }
     #endregion
 }

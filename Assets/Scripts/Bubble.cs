@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 [RequireComponent(typeof(CircleCollider2D))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Bubble : MonoBehaviour {
     public BubbleEffect bubbleEffectPrefab;
 	// Use this for initialization
@@ -15,7 +16,6 @@ public class Bubble : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("TRIGGER");
         Caterpillar c = other.GetComponent<Caterpillar>();
         if(c != null)
         {

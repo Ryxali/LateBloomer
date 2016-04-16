@@ -29,4 +29,11 @@ public class Launcher : MonoBehaviour {
             //caterpillar.acc
         }
 	}
+
+
+    // Called from GameManager
+    void Reset()
+    {
+        cameraTransformFollower.target = transform;
+    }
 }
