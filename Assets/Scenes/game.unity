@@ -231,7 +231,7 @@ MonoBehaviour:
   img: {fileID: 284584264}
   tex: {fileID: 0}
   cellSize: 4
-  scanWidth: 16
+  scanWidth: 6
 --- !u!4 &571456856
 Transform:
   m_ObjectHideFlags: 0
@@ -503,7 +503,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11421932, guid: 10e90e49745768c43a899da2a5fded2e, type: 2}
       propertyPath: launchVelocity
-      value: 56
+      value: 60
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 10e90e49745768c43a899da2a5fded2e, type: 2}

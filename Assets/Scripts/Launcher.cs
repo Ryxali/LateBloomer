@@ -7,6 +7,8 @@ public class Launcher : MonoBehaviour {
     public Transform launchTransform;
     public WorldBuilder worldBuilder;
 
+    private bool canFire = false;
+
     [Range(0.0f, 1000.0f)]
     public float launchVelocity = 20.0f;
 	// Use this for initialization
@@ -17,15 +19,16 @@ public class Launcher : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
             Caterpillar caterpillar = Instantiate<Caterpillar>(caterpillarPrefab);
+            caterpillar.transform.parent = transform.parent;
             caterpillar.transform.position = launchTransform.position;
             caterpillar.transform.rotation = launchTransform.rotation;
             caterpillar.AddVelocity(launchTransform.forward * launchVelocity);
             cameraTransformFollower.target = caterpillar.transform;
             worldBuilder.target = caterpillar.transform;
-            worldBuilder.Reseed();
+            canFire = false;
             //caterpillar.acc
         }
 	}
@@ -35,5 +38,7 @@ public class Launcher : MonoBehaviour {
     void Reset()
     {
         cameraTransformFollower.target = transform;
+        canFire = true;
+        worldBuilder.target = transform;
     }
 }

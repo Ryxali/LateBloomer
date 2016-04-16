@@ -58,7 +58,6 @@ public class WorldBuilder : MonoBehaviour {
         {
             Destroy(transform.GetChild(i).gameObject);
         }
-        target = null;
     }
 	// Update is called once per frame
 	void Update () {
@@ -146,7 +145,7 @@ public class WorldBuilder : MonoBehaviour {
                 }
 
                 o.parent = transform;
-                o.position = new Vector3(x * cellSize, y * cellSize);
+                o.position = new Vector3(x * cellSize + Random.Range(1, cellSize), y * cellSize + Random.Range(1, cellSize));
             }
         }
         else

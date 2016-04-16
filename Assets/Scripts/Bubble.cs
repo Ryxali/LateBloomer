@@ -4,6 +4,8 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Bubble : MonoBehaviour {
     public BubbleEffect bubbleEffectPrefab;
+
+    
 	// Use this for initialization
 	void Start () {
 	
@@ -19,10 +21,18 @@ public class Bubble : MonoBehaviour {
         Caterpillar c = other.GetComponent<Caterpillar>();
         if(c != null)
         {
-            BubbleEffect effect = Instantiate<BubbleEffect>(bubbleEffectPrefab);
-            effect.transform.parent = c.transform;
-            effect.transform.localPosition = Vector3.zero;
-            effect.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            BubbleEffect bEff = c.GetComponentInChildren<BubbleEffect>();
+            if(bEff != null)
+            {
+                bEff.ApplyStack();
+            } else
+            {
+                BubbleEffect effect = Instantiate<BubbleEffect>(bubbleEffectPrefab);
+                effect.transform.parent = c.transform;
+                effect.transform.localPosition = Vector3.zero;
+                effect.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            }
+            
         }
         Destroy(gameObject);
     }
