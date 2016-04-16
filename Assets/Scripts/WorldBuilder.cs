@@ -25,7 +25,7 @@ public class WorldBuilder : MonoBehaviour {
     // Use this for initialization
     int c = 0;
     void Start () {
-        tex = new Texture2D(1000, 1000);
+        /*tex = new Texture2D(1000, 1000);
         for (int x = 0; x + 4 < tex.width; x += 4)
         {
             for (int y = 0; y + 4 < tex.height; y += 4)
@@ -44,7 +44,7 @@ public class WorldBuilder : MonoBehaviour {
             }
         }
         tex.Apply();
-        img.texture = tex;
+        img.texture = tex;*/
 
     }
     
@@ -121,7 +121,7 @@ public class WorldBuilder : MonoBehaviour {
         if(y > 1)
         {
             if (val > 0.9f) t = typeof(Wind);
-            else if (val > 0.5f && val < 0.6f) t = typeof(Bubble);
+            else if (val > 0.5f && val < 0.6f && y < 50) t = typeof(Bubble);
             else if (val > 0.3f && val < 0.4f) t = typeof(Leaf);
             if (t != null)
             {

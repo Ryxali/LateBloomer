@@ -6,11 +6,13 @@ public class Launcher : MonoBehaviour {
     public TransformFollower cameraTransformFollower;
     public Transform launchTransform;
     public WorldBuilder worldBuilder;
-
+    public Transform cannonAxis;
     private bool canFire = false;
 
     [Range(0.0f, 1000.0f)]
-    public float launchVelocity = 20.0f;
+    public float maxLaunchVelocity = 20.0f;
+
+    private float launchVelocity = 20.0f;
 	// Use this for initialization
 	void Start () {
         Debug.Assert(caterpillarPrefab != null);
@@ -19,6 +21,7 @@ public class Launcher : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        UpdateFiringFluctuation();
         if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
             Caterpillar caterpillar = Instantiate<Caterpillar>(caterpillarPrefab);
@@ -32,6 +35,12 @@ public class Launcher : MonoBehaviour {
             //caterpillar.acc
         }
 	}
+
+    private void UpdateFiringFluctuation()
+    {
+        cannonAxis.transform.rotation = Quaternion.AngleAxis(Mathf.Sin(Time.time) * 30, Vector3.forward);
+        launchVelocity = Mathf.Abs(Mathf.Cos(Time.time * 1.5f)) * maxLaunchVelocity;
+    }
 
 
     // Called from GameManager

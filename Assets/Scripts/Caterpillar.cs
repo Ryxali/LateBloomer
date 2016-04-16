@@ -19,6 +19,10 @@ public class Caterpillar : MonoBehaviour {
 
     public float groundBouncyness = 0.6f;
     public float groundFriction = 0.6f;
+
+
+    public MeshRenderer larvaRenderer;
+    public MeshRenderer cocoonRenderer;
     //private float maxVelocity = 0.5f;
     //xi+1 = xi + (xi - xi-1) + a * dt * dt
     // Use this for initialization
@@ -55,6 +59,8 @@ public class Caterpillar : MonoBehaviour {
 
     IEnumerator KakunaMatata()
     {
+        larvaRenderer.enabled = false;
+        cocoonRenderer.enabled = true;
         yield return new WaitForSeconds(5.0f);
         Debug.Log("What a wonderful phrase!");
     }
@@ -88,6 +94,7 @@ public class Caterpillar : MonoBehaviour {
             transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
             SetVelocity(vel * (1.0f - groundFriction) - velU * groundBouncyness);
         }
+        transform.forward = (transform.position - lastPosition).normalized;
 	}
 
     private void TickPhysics()
