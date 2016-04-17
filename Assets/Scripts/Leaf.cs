@@ -3,7 +3,17 @@ using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(CircleCollider2D))]
 public class Leaf : MonoBehaviour {
+    public Mesh[] meshes;
 
+
+    void Start()
+    {
+        if(meshes.Length > 0)
+        {
+            GetComponentInChildren<MeshFilter>().mesh = meshes[Random.Range(0, meshes.Length)];
+        }
+        transform.forward = Random.insideUnitSphere;
+    }
     void OnTriggerEnter2D(Collider2D other)
     {
 
