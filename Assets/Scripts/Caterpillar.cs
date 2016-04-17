@@ -26,6 +26,8 @@ public class Caterpillar : MonoBehaviour {
 
     public Renderer larvaRenderer;
     public Renderer cocoonRenderer;
+    public AudioClip startSquee;
+    public AudioClip nomLeafClip;
     //private float maxVelocity = 0.5f;
     //xi+1 = xi + (xi - xi-1) + a * dt * dt
     // Use this for initialization
@@ -33,12 +35,14 @@ public class Caterpillar : MonoBehaviour {
         
         lastPosition += transform.position;
         canNomOnLeaf = true;
+        GetComponent<AudioSource>().PlayOneShot(startSquee);
 	}
 
     public void NomOnLeaf()
     {
         if (!canNomOnLeaf) return;
         canNomOnLeaf = false;
+        GetComponent<AudioSource>().PlayOneShot(nomLeafClip);
         StartCoroutine(OmNomNom());
 
         
@@ -107,11 +111,15 @@ public class Caterpillar : MonoBehaviour {
             if (velU.magnitude > 1.0f)
             {
                 GetComponentInParent<GameManager>().OnShake(velU.magnitude, 0.5f);
+                GetComponent<AudioSource>().pitch = Mathf.Lerp(1.2f, 0.8f, velU.magnitude / 10.0f);
+                GetComponent<AudioSource>().Play();
             }
+
         }
         transform.forward = (transform.position - lastPosition).normalized;
 
         larvaRenderer.transform.parent.GetComponent<Animator>().SetFloat("Velocity",  Mathf.Clamp01((curVelocity.sqrMagnitude / 1000.0f)));
+
         
 	}
 

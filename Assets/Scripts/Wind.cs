@@ -18,6 +18,7 @@ public class Wind : MonoBehaviour {
         if (c != null)
         {
             c.AddVelocity(transform.forward * strength);
+            GetComponent<AudioSource>().Play();
         }
     }
 }

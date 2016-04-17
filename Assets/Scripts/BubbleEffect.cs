@@ -6,6 +6,7 @@ public class BubbleEffect : MonoBehaviour {
     public float duration = 2.0f;
     private int stacks = 0;
     public int maxStacks = 3;
+    public AudioClip popSound;
     // Use this for initialization
     void Start () {
         ApplyStack();
@@ -28,10 +29,13 @@ public class BubbleEffect : MonoBehaviour {
                 
                 
             }
+            GetComponent<AudioSource>().pitch = 1.0f;
+            caterpillar.GetComponent<AudioSource>().PlayOneShot(popSound);
             Destroy(gameObject);
             return;
         }
-        
+        GetComponent<AudioSource>().pitch =  0.66f + (float)stacks / 3.0f;
+        GetComponent<AudioSource>().Play();
         caterpillar.acceleration += Vector3.up * effectMagnitude;
         UpdateSize();
     }
@@ -48,6 +52,8 @@ public class BubbleEffect : MonoBehaviour {
         {
             yield return new WaitForSeconds(duration);
             caterpillar.acceleration -= Vector3.up * effectMagnitude;
+            GetComponent<AudioSource>().pitch = 0.66f + (float)stacks / 3.0f;
+            caterpillar.GetComponent<AudioSource>().PlayOneShot(popSound);
             stacks--;
             UpdateSize();
         }

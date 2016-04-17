@@ -33,6 +33,7 @@ public class Launcher : MonoBehaviour {
 
     private void Fire()
     {
+        SendMessageUpwards("OnStart", SendMessageOptions.DontRequireReceiver);
         Caterpillar caterpillar = Instantiate<Caterpillar>(caterpillarPrefab);
         caterpillar.transform.parent = transform.parent;
         caterpillar.transform.position = launchTransform.position;

@@ -32,6 +32,8 @@ public class Mushroom : MonoBehaviour {
                 GetComponentInParent<GameManager>().OnShake(velU.magnitude  , 0.5f);
             }
             c.SetVelocity(vel * (1.0f - friction) - velU * bouncyness + Vector3.up * extraBounceVelocity);
+            GetComponent<AudioSource>().pitch = Mathf.Lerp(1.5f, 0.7f, velU.magnitude / 10.0f);
+            GetComponent<AudioSource>().Play();
         }
     }
 }
