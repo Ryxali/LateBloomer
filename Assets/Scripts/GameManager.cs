@@ -50,10 +50,24 @@ public class GameManager : MonoBehaviour {
         PlayFly();
     }
 	
-    public void OnRoundEnd()
+    public void OnRoundEnd(int score = 0)
+    {
+        if(score == 0)
+        {
+            Restart();
+        }
+        else
+        {
+            UIManager.inst.AddScore(score);
+            UIManager.inst.ShowPanels(UIManager.Panels.SCORE_PANEL);
+        }
+    }
+
+    void Restart()
     {
         BroadcastMessage("Reset");
         PlayIntro();
+        UIManager.inst.ShowPanels(UIManager.Panels.LAUNCHER_SLIDER_PANEL | UIManager.Panels.TUTORIAL_PANEL);
     }
 
     public void OnShake(float intensity, float duration)

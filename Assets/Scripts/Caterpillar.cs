@@ -23,11 +23,13 @@ public class Caterpillar : MonoBehaviour {
     public float groundBouncyness = 0.6f;
     public float groundFriction = 0.6f;
 
+    private bool freezePhysics = false;
 
     public Renderer larvaRenderer;
     public Renderer cocoonRenderer;
     public AudioClip startSquee;
     public AudioClip nomLeafClip;
+    public AudioClip jumpClip;
     //private float maxVelocity = 0.5f;
     //xi+1 = xi + (xi - xi-1) + a * dt * dt
     // Use this for initialization
@@ -90,10 +92,11 @@ public class Caterpillar : MonoBehaviour {
 
     #region Physics
     void FixedUpdate () {
-
+        if (freezePhysics) return;
         if(nJumps > 0 && Input.GetKeyDown(KeyCode.Space))
         {
             AddVelocity(Vector3.up * jumpVelocity);
+            GetComponent<AudioSource>().PlayOneShot(jumpClip);
             nJumps--;
         }
 
@@ -113,6 +116,10 @@ public class Caterpillar : MonoBehaviour {
                 GetComponentInParent<GameManager>().OnShake(velU.magnitude, 0.5f);
                 GetComponent<AudioSource>().pitch = Mathf.Lerp(1.2f, 0.8f, velU.magnitude / 10.0f);
                 GetComponent<AudioSource>().Play();
+            }else if (curVelocity.magnitude < 0.1f)
+            {
+                freezePhysics = true;
+                SendMessageUpwards("OnRoundEnd", transform.position.x);
             }
 
         }

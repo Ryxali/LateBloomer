@@ -41,6 +41,7 @@ public class Launcher : MonoBehaviour {
         caterpillar.AddVelocity(launchTransform.forward * launchVelocity);
         cameraTransformFollower.target = caterpillar.transform;
         worldBuilder.target = caterpillar.transform;
+        UIManager.inst.ShowPanels(UIManager.Panels.NONE);
         
     }
 

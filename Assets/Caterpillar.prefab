@@ -1202,6 +1202,7 @@ MonoBehaviour:
   cocoonRenderer: {fileID: 2378404}
   startSquee: {fileID: 8300000, guid: bd77f5bf922e7564daf8651c2cd867b3, type: 3}
   nomLeafClip: {fileID: 8300000, guid: df66e455f30f3d747a6ed9050ce4172f, type: 3}
+  jumpClip: {fileID: 8300000, guid: bc0d6270bc09bc44bb450209340fedf4, type: 3}
 --- !u!137 &13707268
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
