@@ -11,11 +11,11 @@ public class WorldBuilder : MonoBehaviour {
     public Leaf leafPrefab;
     public Mushroom mushroomPrefab;
     public Grass grassPrefab;
+
+    public GameObject treePrefab;
     
     private Dictionary<string, bool> spawned = new Dictionary<string, bool>();
-
-    public RawImage img;
-    public Texture2D tex;
+    
     [Range(0, 16)]
     public int cellSize = 4;
     [Range(0, 32)]
@@ -23,29 +23,8 @@ public class WorldBuilder : MonoBehaviour {
 
     private int seed = 0;
 
-    // Use this for initialization
-    int c = 0;
     void Start () {
-        /*tex = new Texture2D(1000, 1000);
-        for (int x = 0; x + 4 < tex.width; x += 4)
-        {
-            for (int y = 0; y + 4 < tex.height; y += 4)
-            {
-                float f = Noise(x, y, c);
-                for (int i = 0; i < 4; i++)
-                {
-                    for (int j = 0; j < 4; j++)
-                    {
-                        tex.SetPixel(x + i, y + j, new Color(f, f, f));
-                    }
-
-                }
-
-
-            }
-        }
-        tex.Apply();
-        img.texture = tex;*/
+        
 
     }
     
@@ -54,7 +33,6 @@ public class WorldBuilder : MonoBehaviour {
     {
         Reseed();
         spawned.Clear();
-        //foreach()
         for(int i = 0; i < transform.childCount; i++)
         {
             Destroy(transform.GetChild(i).gameObject);
@@ -62,32 +40,7 @@ public class WorldBuilder : MonoBehaviour {
     }
 	// Update is called once per frame
 	void Update () {
-	    //TODO build along x and y
         //divide into cells (3x3 units), populate each cell with (bubble, leaf, wind, nothing) with some percent chance for each.
-
-        if(Input.GetKeyDown(KeyCode.K))
-        {
-            c++;
-            for (int x = 0; x + 4 < tex.width; x += 4)
-            {
-                for (int y = 0; y + 4 < tex.height; y += 4)
-                {
-                    float f = Noise(x, y, c);
-                    for (int i = 0; i < 4; i++)
-                    {
-                        for (int j = 0; j < 4; j++)
-                        {
-                            tex.SetPixel(x + i, y + j, new Color(f, f, f));
-                        }
-
-                    }
-
-
-                }
-            }
-            tex.Apply();
-            img.texture = tex;
-        }
         if(target != null)
             Scan();
 	}
@@ -102,21 +55,50 @@ public class WorldBuilder : MonoBehaviour {
     {
         for(int x = -scanWidth; x < scanWidth; x++)
         {
-            for(int y = -scanWidth; y < scanWidth; y++)
+            int posX = (int)target.position.x / cellSize + x;
+            for (int y = -scanWidth; y < scanWidth; y++)
             {
-                int posX = (int)target.position.x / cellSize + x;
+                
                 int posY = (int)target.position.y / cellSize + y;
                 if(!spawned.ContainsKey(posX + "x" + posY))
                 {
                     Spawn(posX, posY);
                 }
+                
+                
+                
+            }
+            for (int z = 1; z <= 13; z++)
+            {
+                int bgX = posX * 8;
+                if (!spawned.ContainsKey(bgX + "x" + 0 + ":" + z))
+                {
+                    SpawnBackground(bgX, 0, z);
+                }
             }
         }
     }
 
+    private void SpawnBackground(int x, int y, int z) 
+    {
+        float val = Noise(x, z, seed);
+
+        GameObject type = null;
+        if (val < 0.01) type = treePrefab;
+
+        if(type != null)
+        {
+            Transform o = Instantiate(treePrefab).transform;
+            o.parent = transform;
+            o.position = new Vector3(x * cellSize + Random.Range(1, cellSize), 0, 100 + z * 50.0f);
+        }
+        spawned.Add(x + "x" + y + ":" + z, true);
+
+    }
+
     private void Spawn(int x, int y)
     {
-        float val = Noise(x, y, 0);
+        float val = Noise(x, y, seed);
 
         System.Type t = null;
         if(y > 1)

@@ -14,6 +14,9 @@ public class Caterpillar : MonoBehaviour {
 
     public int leavesNeededUntilKakuna = 10;
 
+    public int nJumps = 3;
+    public float jumpVelocity = 10;
+
     public bool canNomOnLeaf { get; private set; }
     public int leavesNommed { get; private set; }
 
@@ -84,15 +87,27 @@ public class Caterpillar : MonoBehaviour {
     #region Physics
     void FixedUpdate () {
 
+        if(nJumps > 0 && Input.GetKeyDown(KeyCode.Space))
+        {
+            AddVelocity(Vector3.up * jumpVelocity);
+            nJumps--;
+        }
+
         TickPhysics();
         if(transform.position.y < 0.5f)
         {
+            
+            
             Vector3 vel = curVelocity;
             if (vel.y > 0.0f) return;
             Vector3 velU = Vector3.Project(vel, Vector3.up);
             vel -= velU;
             transform.position = new Vector3(transform.position.x, 0.5f, transform.position.z);
             SetVelocity(vel * (1.0f - groundFriction) - velU * groundBouncyness);
+            if (velU.magnitude > 1.0f)
+            {
+                GetComponentInParent<GameManager>().OnShake(velU.magnitude, 0.5f);
+            }
         }
         transform.forward = (transform.position - lastPosition).normalized;
 	}

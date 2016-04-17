@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class GameManager : MonoBehaviour {
-
+    public TransformFollower cam;
     void Start()
     {
         OnRoundEnd();
@@ -19,5 +19,10 @@ public class GameManager : MonoBehaviour {
     public void OnRoundEnd()
     {
         BroadcastMessage("Reset");
+    }
+
+    public void OnShake(float intensity, float duration)
+    {
+        cam.GetComponentInChildren<CameraShaker>().Shake(intensity, duration);
     }
 }

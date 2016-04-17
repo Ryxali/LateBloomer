@@ -34,6 +34,7 @@ public class Launcher : MonoBehaviour {
             canFire = false;
             //caterpillar.acc
         }
+        UIManager.inst.forceSlider.value = launchVelocity / maxLaunchVelocity;
 	}
 
     private void UpdateFiringFluctuation()

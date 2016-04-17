@@ -6,6 +6,7 @@ public class Mushroom : MonoBehaviour {
 
     public float bouncyness = 0.8f;
     public float friction = 0.1f;
+    public float extraBounceVelocity = 10.0f;
 	// Use this for initialization
 	void Start () {
 	
@@ -26,8 +27,11 @@ public class Mushroom : MonoBehaviour {
             if (vel.y > 0.0f) return;
             Vector3 velU = Vector3.Project(vel, Vector3.up);
             vel -= velU;
-
-            c.SetVelocity(vel * (1.0f - friction) - velU * bouncyness);
+            if (velU.magnitude > 1.0f)
+            {
+                GetComponentInParent<GameManager>().OnShake(velU.magnitude  , 0.5f);
+            }
+            c.SetVelocity(vel * (1.0f - friction) - velU * bouncyness + Vector3.up * extraBounceVelocity);
         }
     }
 }

@@ -19,7 +19,7 @@ public class BubbleEffect : MonoBehaviour {
         Caterpillar caterpillar = GetComponentInParent<Caterpillar>();
         if (stacks > maxStacks)
         {
-            while(stacks > 0)
+            while(stacks > 1)
             {
                 
                 caterpillar.acceleration -= Vector3.up * effectMagnitude;
@@ -31,6 +31,7 @@ public class BubbleEffect : MonoBehaviour {
             Destroy(gameObject);
             return;
         }
+        
         caterpillar.acceleration += Vector3.up * effectMagnitude;
         UpdateSize();
     }
