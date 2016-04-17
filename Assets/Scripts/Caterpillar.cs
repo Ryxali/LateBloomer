@@ -110,6 +110,9 @@ public class Caterpillar : MonoBehaviour {
             }
         }
         transform.forward = (transform.position - lastPosition).normalized;
+
+        larvaRenderer.transform.parent.GetComponent<Animator>().SetFloat("Velocity",  Mathf.Clamp01((curVelocity.sqrMagnitude / 1000.0f)));
+        
 	}
 
     private void TickPhysics()

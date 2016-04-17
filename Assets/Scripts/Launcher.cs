@@ -24,18 +24,24 @@ public class Launcher : MonoBehaviour {
         UpdateFiringFluctuation();
         if (Input.GetKeyDown(KeyCode.Space) && canFire)
         {
-            Caterpillar caterpillar = Instantiate<Caterpillar>(caterpillarPrefab);
-            caterpillar.transform.parent = transform.parent;
-            caterpillar.transform.position = launchTransform.position;
-            caterpillar.transform.rotation = launchTransform.rotation;
-            caterpillar.AddVelocity(launchTransform.forward * launchVelocity);
-            cameraTransformFollower.target = caterpillar.transform;
-            worldBuilder.target = caterpillar.transform;
             canFire = false;
+            GetComponentInChildren<Animator>().SetTrigger("Fire");
             //caterpillar.acc
         }
         UIManager.inst.forceSlider.value = launchVelocity / maxLaunchVelocity;
 	}
+
+    private void Fire()
+    {
+        Caterpillar caterpillar = Instantiate<Caterpillar>(caterpillarPrefab);
+        caterpillar.transform.parent = transform.parent;
+        caterpillar.transform.position = launchTransform.position;
+        caterpillar.transform.rotation = launchTransform.rotation;
+        caterpillar.AddVelocity(launchTransform.forward * launchVelocity);
+        cameraTransformFollower.target = caterpillar.transform;
+        worldBuilder.target = caterpillar.transform;
+        
+    }
 
     private void UpdateFiringFluctuation()
     {

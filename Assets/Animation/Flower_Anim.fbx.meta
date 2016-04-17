@@ -146,7 +146,7 @@ ModelImporter:
       - time: 0.39696315
         functionName: FireCaterpillar
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: d90d0537469d8234c82562d20654fb2d,
+        objectReferenceParameter: {fileID: 11500000, guid: ec48206a18980584cbe9861300f28862,
           type: 3}
         floatParameter: 0
         intParameter: 0
