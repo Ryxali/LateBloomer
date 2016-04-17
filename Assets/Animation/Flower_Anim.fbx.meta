@@ -1,0 +1,230 @@
+fileFormatVersion: 2
+guid: f3f2dc82756d7db4e9c65d9af0aea60e
+timeCreated: 1460898899
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: flower_1_joint
+    100002: flower_6_joint
+    100004: flower_7_joint
+    100006: //RootNode
+    100008: joint1
+    100010: joint10
+    100012: joint2
+    100014: joint3
+    100016: joint4
+    100018: joint5
+    100020: joint6
+    100022: joint7
+    100024: joint8
+    100026: joint9
+    100028: polySurface21
+    400000: flower_1_joint
+    400002: flower_6_joint
+    400004: flower_7_joint
+    400006: //RootNode
+    400008: joint1
+    400010: joint10
+    400012: joint2
+    400014: joint3
+    400016: joint4
+    400018: joint5
+    400020: joint6
+    400022: joint7
+    400024: joint8
+    400026: joint9
+    400028: polySurface21
+    4300000: polySurface21
+    7400000: Idle
+    7400002: Fire
+    9500000: //RootNode
+    13700000: polySurface21
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 16
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: flower_1_joint
+        weight: 1
+      - path: flower_1_joint/joint1
+        weight: 1
+      - path: flower_1_joint/joint1/joint2
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/joint9
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/joint9/joint10
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/joint9/joint10/flower_6_joint
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/joint9/joint10/flower_6_joint/flower_7_joint
+        weight: 1
+      - path: polySurface21
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Fire
+      takeName: Take 001
+      firstFrame: 20
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.39696315
+        functionName: FireCaterpillar
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: d90d0537469d8234c82562d20654fb2d,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: flower_1_joint
+        weight: 1
+      - path: flower_1_joint/joint1
+        weight: 1
+      - path: flower_1_joint/joint1/joint2
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/joint9
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/joint9/joint10
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/joint9/joint10/flower_6_joint
+        weight: 1
+      - path: flower_1_joint/joint1/joint2/joint3/joint4/joint5/joint6/joint7/joint8/joint9/joint10/flower_6_joint/flower_7_joint
+        weight: 1
+      - path: polySurface21
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 100
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -20,7 +20,7 @@ public class TransformFollower : MonoBehaviour {
         {
             float dist = (transform.position - target.position).magnitude;
             transform.position = Vector3.MoveTowards(transform.position, target.position, dist * dist * Time.deltaTime * FollowSpeed);
-            transform.position += Vector3.back * target.position.y / 10.0f;
+            transform.position += Vector3.back * target.position.y / 100.0f;
         }
 	}
 }

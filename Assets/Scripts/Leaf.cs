@@ -12,7 +12,8 @@ public class Leaf : MonoBehaviour {
         {
             GetComponentInChildren<MeshFilter>().mesh = meshes[Random.Range(0, meshes.Length)];
         }
-        transform.forward = Random.insideUnitSphere;
+        transform.forward = Vector3.back;
+        transform.Rotate(Vector3.forward * Random.Range(0.0f, 360.0f));
     }
     void OnTriggerEnter2D(Collider2D other)
     {

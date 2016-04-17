@@ -24,8 +24,8 @@ public class Caterpillar : MonoBehaviour {
     public float groundFriction = 0.6f;
 
 
-    public MeshRenderer larvaRenderer;
-    public MeshRenderer cocoonRenderer;
+    public Renderer larvaRenderer;
+    public Renderer cocoonRenderer;
     //private float maxVelocity = 0.5f;
     //xi+1 = xi + (xi - xi-1) + a * dt * dt
     // Use this for initialization
